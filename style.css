@@ -1,0 +1,55 @@
+#content-box {
+    box-shadow: 0px 0px 20px grey;
+}
+
+#playground-holder {
+    padding-top: 110%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    position: relative;
+}
+
+#playground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+#playground > div {
+    height: 5%;
+    width: 100%;
+}
+
+#playground > div > div {
+    display: inline-block;
+    width: 10%;
+    height: 100%;
+    border: 1px solid grey;
+}
+
+#playground > div > div.default-box {
+    background-color: lightgrey;
+}
+
+#playground > div > div.green-box {
+    background-color: green;
+}
+
+#playground > div > div.red-box {
+    background-color: red;
+}
+
+#playground > div > div.blue-box {
+    background-color: blue;
+}
+
+#playground > div > div.yellow-box {
+    background-color: yellow;
+}
+
+#playground > div > div.orange-box {
+    background-color: orange;
+}
