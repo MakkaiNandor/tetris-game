@@ -1,3 +1,7 @@
+html, body {
+    overflow-x: hidden;
+}
+
 * {
     /* outline: 1px dashed red; */
     box-sizing: content-box;
@@ -22,4 +26,8 @@
     height: 5%;
     background: white;
     vertical-align: top;
+}
+
+.invisible {
+    display: none;
 }

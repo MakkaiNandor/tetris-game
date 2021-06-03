@@ -119,10 +119,12 @@ class Shape {
     }
 }
 
-var fallingShape = new Shape();
-var nextShape = new Shape();
+var fallingShape;
+var nextShape;
+var gameIsRunning = false;
 
 function gameLoop() {
+    if(!gameIsRunning) return;
     if(!fallingShape.fall()) {
         fallingShape.saveToMap();
         deleteCompleteLines(fallingShape.row, fallingShape.pattern.length);
@@ -169,6 +171,32 @@ window.onkeydown = (e) => {
 
 window.onload = () => {
     var playground = document.getElementById("playground");
+    var startButton = document.getElementById("start-btn");
+    var resetButton = document.getElementById("reset-btn");
+
+    startButton.addEventListener("click", (e) => {
+        fallingShape = new Shape();
+        nextShape = new Shape();
+        gameIsRunning = true;
+        fallingShape.draw();
+        setTimeout(gameLoop, 1000);
+        startButton.classList.toggle("invisible");
+        resetButton.classList.toggle("invisible");
+    });
+
+    resetButton.addEventListener("click", (e) => {
+        gameIsRunning = false;
+        for(var row = 0 ; row < ROWS ; ++row) {
+            for(var col = 0 ; col < COLS ; ++col) {
+                MAP[row][col] = 0;
+                ELEMENTS[row][col].className = "empty";
+            }
+        }
+        delete fallingShape;
+        delete nextShape;
+        startButton.classList.toggle("invisible");
+        resetButton.classList.toggle("invisible");
+    });
 
     for(var row = 0 ; row < ROWS ; ++row){
         for(var col = 0 ; col < COLS ; ++col){
@@ -176,7 +204,4 @@ window.onload = () => {
             playground.appendChild(ELEMENTS[row][col]);
         }
     }
-
-    fallingShape.draw();
-    setTimeout(gameLoop, 1000); 
 }
